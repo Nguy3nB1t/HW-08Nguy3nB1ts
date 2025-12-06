@@ -9,8 +9,26 @@ using namespace std;
  *
  * Palindromes are NOT case-sensitive - "RaCecaR" is a valid palindrome
  *
+
+
  *You should provide a recursive solution*/
-bool isPalindrome(const string s1){
-    //STUB: Replace the following with the correct code.
-    return true;
+bool helper(const string& s, int left, int right) {
+    // Base case: If the pointers cross, it's a palindrome
+    if (left >= right) {
+        return true;
+    }
+
+    // Case-insensitive comparison
+    if (tolower(s[left]) != tolower(s[right])) {
+        return false;
+    }
+
+    // Recursive case: move inward
+    return helper(s, left + 1, right - 1);
 }
+
+bool isPalindrome(const string s1) {
+    return helper(s1, 0, s1.length() - 1);
+}
+
+
